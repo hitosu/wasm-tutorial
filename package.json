@@ -2,7 +2,7 @@
   "name": "wasm-tutorial",
   "version": "1.0.0",
   "description": "A template for kick starting a Rust and WebAssembly project using [`wasm-pack`](https://github.com/rustwasm/wasm-pack).",
-  "main": "www\\index.js",
+  "main": "web\\index.js",
   "directories": {
     "test": "tests"
   },
