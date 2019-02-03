@@ -9,6 +9,7 @@
   "scripts": {
     "build:wasm": "wasm-pack build",
     "build": "wasm-pack build && webpack --config webpack.config.js",
+    "build:prod": "wasm-pack build && webpack --config webpack.config.js --production",
     "start": "wasm-pack build && webpack-dev-server",
     "test": "wasm-pack test --firefox --headless"
   },
