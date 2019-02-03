@@ -113,17 +113,6 @@ impl Universe {
         };
 
         next.set(idx, next_cell);
-
-        if cell != next_cell {
-          log!(
-            "cell [{}, {}] is initially {:?} and has {} live neighbors\n    it becomes {:?}",
-            row,
-            col,
-            cell,
-            live_neighbors,
-            next_cell
-          );
-        }
       }
     }
     self.cells = next;
