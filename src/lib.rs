@@ -127,6 +127,12 @@ impl Universe {
     self.height = height;
     self.cells.clear();
   }
+
+  pub fn toggle_cell(&mut self, row: u32, column: u32) {
+    let idx = self.get_index(row, column);
+    let cell = self.cells[idx];
+    self.cells.set(idx, !cell);
+  }
 }
 
 impl fmt::Display for Universe {
