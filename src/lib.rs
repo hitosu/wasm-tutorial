@@ -7,6 +7,7 @@ mod utils;
 
 use cfg_if::cfg_if;
 use fixedbitset::FixedBitSet;
+use std::fmt;
 use wasm_bindgen::prelude::*;
 
 cfg_if! {
@@ -45,6 +46,17 @@ impl Universe {
       }
     }
     count
+  }
+
+  pub fn get_cells(&self) -> &[u32] {
+    &self.cells.as_slice()
+  }
+
+  pub fn set_cells(&mut self, cells: &[(u32, u32)]) {
+    for (row, col) in cells.iter().cloned() {
+      let idx = self.get_index(row, col);
+      self.cells.set(idx, true);
+    }
   }
 }
 
@@ -104,9 +116,17 @@ impl Universe {
     }
     self.cells = next;
   }
-}
 
-use std::fmt;
+  pub fn set_width(&mut self, width: u32) {
+    self.width = width;
+    self.cells.clear();
+  }
+
+  pub fn set_height(&mut self, height: u32) {
+    self.height = height;
+    self.cells.clear();
+  }
+}
 
 impl fmt::Display for Universe {
   fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
