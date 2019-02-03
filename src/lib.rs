@@ -63,6 +63,8 @@ impl Universe {
 #[wasm_bindgen]
 impl Universe {
   pub fn new() -> Universe {
+    utils::set_panic_hook();
+
     let width = 64;
     let height = 64;
     let size = (width * height) as usize;
@@ -102,16 +104,26 @@ impl Universe {
         let cell = self.cells[idx];
         let live_neighbors = self.live_neighbor_count(row, col);
 
-        next.set(
-          idx,
-          match (cell, live_neighbors) {
-            (true, x) if x < 2 => false,
-            (true, 2) | (true, 3) => true,
-            (true, x) if x > 3 => false,
-            (false, 3) => true,
-            (otherwise, _) => otherwise,
-          },
-        );
+        let next_cell = match (cell, live_neighbors) {
+          (true, x) if x < 2 => false,
+          (true, 2) | (true, 3) => true,
+          (true, x) if x > 3 => false,
+          (false, 3) => true,
+          (otherwise, _) => otherwise,
+        };
+
+        next.set(idx, next_cell);
+
+        if cell != next_cell {
+          log!(
+            "cell [{}, {}] is initially {:?} and has {} live neighbors\n    it becomes {:?}",
+            row,
+            col,
+            cell,
+            live_neighbors,
+            next_cell
+          );
+        }
       }
     }
     self.cells = next;

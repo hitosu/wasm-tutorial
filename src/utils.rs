@@ -1,3 +1,6 @@
+#![macro_use]
+
+extern crate web_sys;
 use cfg_if::cfg_if;
 
 cfg_if! {
@@ -13,5 +16,11 @@ cfg_if! {
     } else {
         #[inline]
         pub fn set_panic_hook() {}
+    }
+}
+
+macro_rules! log {
+    ( $( $t:tt )* ) => {
+        web_sys::console::log_1(&format!( $( $t )* ).into());
     }
 }

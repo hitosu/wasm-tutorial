@@ -12,7 +12,7 @@
     "start": "wasm-pack build && webpack-dev-server",
     "test": "wasm-pack test --firefox --headless"
   },
-  "author": "",
+  "author": "Vasily Kazantsev <hub@hito.su>",
   "license": "ISC",
   "devDependencies": {
     "webpack": "^4.16.3",
