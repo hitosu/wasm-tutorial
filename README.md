@@ -1,4 +1,8 @@
-## WASM + RUST tutorial files (Game of life)
+## WASM + RUST tutorial (Game of life)
+
+## Demo
+
+https://hitosu.github.io/wasm-tutorial/index.html
 
 ## Usage
 
