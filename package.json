@@ -7,8 +7,8 @@
     "test": "tests"
   },
   "scripts": {
-    "build": "webpack --config webpack.config.js",
-    "start": "webpack-dev-server"
+    "build": "wasm-pack build && webpack --config webpack.config.js",
+    "start": "wasm-pack build && webpack-dev-server"
   },
   "author": "",
   "license": "ISC",
